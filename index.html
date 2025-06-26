@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hxvac GFX Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <style>
     :root {
       --bg: #0f0f0f;
@@ -104,20 +103,25 @@
     }
     .priorities .plan.quick-pass:hover::before{opacity:1;}
 
-    /* Lightning effect */
-    @keyframes lightningFlash{0%,80%{filter:brightness(1);}100%{filter:brightness(1.6);}}
-    .priorities .plan.lightning-pass:hover{animation:lightningFlash 0.18s infinite alternate;}
+    /* ------------------ Lightning Pass ------------------ */
+    /* Replace flashing with lightning bolt icons pattern */
     .priorities .plan.lightning-pass::before{
       content:"";
       position:absolute;
       inset:0;
-      background:repeating-linear-gradient(60deg,rgba(255,255,255,0.2) 0 2px,transparent 2px 6px);
+      /* small white bolt SVG repeated */
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16' fill='%23ffffff'%3E%3Cpath d='M10 0 L6 8 H9 L4 16 L11 7 H8 L10 0 Z'/%3E%3C/svg%3E");
+      background-size:40px 40px;
+      background-repeat:repeat;
+      filter:drop-shadow(0 0 4px #ffff66);
       opacity:0;
-      transition:opacity 0.2s;
+      transition:opacity 0.3s;
       border-radius:inherit;
       pointer-events:none;
     }
-    .priorities .plan.lightning-pass:hover::before{opacity:0.4;}
+    .priorities .plan.lightning-pass:hover::before{opacity:0.35;}
+
+    /* remove previous flashing animation by not applying it */
 
   </style>
 </head>
@@ -145,59 +149,4 @@
     <h2 style="text-align:center;font-size:2rem;font-weight:700;margin-bottom:1rem;">Portfolio</h2>
     <div class="gallery">
       <div class="card"><img src="images/sample1.png" alt="Hxvac GFX Render 1" /></div>
-      <div class="card"><img src="images/sample2.png" alt="Hxvac GFX Render 2" /></div>
-      <div class="card"><img src="images/sample3.png" alt="Hxvac GFX Render 3" /></div>
-    </div>
-  </section>
-
-  <!-- ---------- PRICING ---------- -->
-  <section id="pricing" class="container">
-    <h2 style="text-align:center;font-size:2rem;font-weight:700;margin-bottom:1rem;">Pricing</h2>
-    <div class="pricing">
-      <div class="plan">
-        <h3>Icon</h3>
-        <div class="price"><img src="images/robux-icon.png" class="price-icon" /> 3k / $5</div>
-        <ul><li>Simple background</li></ul>
-      </div>
-      <div class="plan">
-        <h3>Thumbnail</h3>
-        <div class="price"><img src="images/robux-icon.png" class="price-icon" /> 5k / $7</div>
-        <ul><li>Detailed background</li></ul>
-      </div>
-      <div class="plan">
-        <h3>Bundle</h3>
-        <div class="price"><img src="images/robux-icon.png" class="price-icon" /> 7k / $10</div>
-        <ul><li>Icon + Thumbnail</li><li>Discounted deal</li></ul>
-      </div>
-    </div>
-
-    <h2 style="text-align:center;font-size:2rem;font-weight:700;margin:3rem 0 1rem;">GFX Priorities</h2>
-    <div class="pricing priorities">
-      <div class="plan quick-pass">
-        <h3>Quick Pass</h3>
-        <div class="price"><img src="images/robux-icon.png" class="price-icon" /> 3k / $8</div>
-        <ul><li>Skip the queue</li><li>48-hour turnaround</li></ul>
-      </div>
-      <div class="plan lightning-pass">
-        <h3>Lightning Pass</h3>
-        <div class="price"><img src="images/robux-icon.png" class="price-icon" /> 6k / $20</div>
-        <ul><li>Top of the list</li><li>24-hour turnaround</li></ul>
-      </div>
-    </div>
-    <p style="text-align:center;margin-top:1rem;font-style:italic;">Revisions: <strong>2 MAX</strong></p>
-  </section>
-
-  <!-- ---------- CONTACT ---------- -->
-  <section id="contact" class="container">
-    <h2 style="text-align:center;font-size:2rem;font-weight:700;margin-bottom:1rem;">Contact</h2>
-    <p style="text-align:center;">Reach out on Discord: <strong>@brandonsdifferent</strong></p>
-    <a href="https://discord.gg/dh2azNrU6q" class="btn discord-btn" target="_blank" style="display:block;text-align:center;margin:auto;width:220px;"><img src="images/discord-icon.png" alt="Discord Logo" /> Order on My Discord Server</a>
-    <p style="text-align:center;margin-top:1.5rem;">Check out my Roblox profile:</p>
-    <a href="https://www.roblox.com/users/120016524/profile" class="btn roblox-btn" target="_blank" style="display:block;text-align:center;margin:1rem auto 0;width:220px;"><img src="images/roblox-icon.png" alt="Roblox Logo" /> Visit My Roblox Profile</a>
-  </section>
-
-  <footer>&copy; 2025 Hxvac GFX. All rights reserved.</footer>
-
-  <div style="height:250px;"></div>
-</body>
-</html>
+      <div class="card"><img src="images/sample2.png" alt="Hxvac
