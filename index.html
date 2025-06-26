@@ -30,6 +30,12 @@
     .card:hover{transform:scale(1.03);}
     .card img{width:100%;display:block;transition:transform 0.3s ease;}
     .card img:hover{transform:scale(1.05);}
+    .pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem;}
+    .plan{background:var(--card);border-radius:1rem;padding:2rem;text-align:center;box-shadow:0 0 0 1px #333;}
+    .plan h3{font-size:1.5rem;margin-bottom:0.5rem;}
+    .plan .price{font-size:1.2rem;color:var(--accent);margin:1rem 0;}
+    .plan ul{list-style:none;padding:0;}
+    .plan li{margin-bottom:0.5rem;}
     footer{text-align:center;padding:2rem 1rem;font-size:0.9rem;color:#777;}
   </style>
 </head>
@@ -50,6 +56,28 @@
     <h2 style="text-align:center;font-size:2rem;font-weight:700;margin-bottom:1rem;">Portfolio</h2>
     <div class="gallery">
       <div class="card"><img src="images/sample1.png" alt="Hxvac GFX Render" /></div>
+    </div>
+  </section>
+
+  <!-- ---------- PRICING ---------- -->
+  <section id="pricing" class="container">
+    <h2 style="text-align:center;font-size:2rem;font-weight:700;margin-bottom:1rem;">Pricing</h2>
+    <div class="pricing">
+      <div class="plan">
+        <h3>Icon</h3>
+        <div class="price">3k / $5</div>
+        <ul><li>Simple background</li></ul>
+      </div>
+      <div class="plan">
+        <h3>Thumbnail</h3>
+        <div class="price">5k / $7</div>
+        <ul><li>Detailed background</li></ul>
+      </div>
+      <div class="plan">
+        <h3>Bundle</h3>
+        <div class="price">7k / $10</div>
+        <ul><li>Icon + Thumbnail</li><li>Discounted deal</li></ul>
+      </div>
     </div>
   </section>
 
