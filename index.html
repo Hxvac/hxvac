@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Editing By Hxvac — Roblox Shorts</title>
   <meta name="description" content="Casual. Quick. High-Quality Edits That Get Views. Roblox-only TikTok & YouTube Shorts." />
+
+  <!-- Social previews / browser color -->
+  <meta property="og:title" content="Editing By Hxvac — Roblox Shorts">
+  <meta property="og:description" content="Casual. Quick. High-Quality Roblox Shorts for TikTok & YouTube.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hxvac.github.io/hxvac/">
+  <meta name="theme-color" content="#7dd3fc">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -24,6 +32,7 @@
 
     .container{max-width:1100px; margin:0 auto; padding:0 20px}
     .section{padding:72px 0}
+    @media (max-width:480px){ .section{padding:56px 0} }
 
     /* Header */
     header{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); background:#0b0d11d9; border-bottom:1px solid #0f172a}
@@ -81,19 +90,18 @@
     .disc{
       display:inline-flex; align-items:center; gap:10px;
       padding:10px 14px; border:1px solid rgba(125,211,252,.45);
-      border-radius:14px; background:#081018; transition:.18s
+      border-radius:14px; background:#081018; transition:.18s;
+      box-shadow:0 6px 20px rgba(125,211,252,.10)
     }
-    .disc:hover{transform:translateY(-2px)}
+    .disc:hover, .disc:focus-visible{
+      transform:translateY(-2px) scale(1.01);
+      box-shadow:0 10px 28px rgba(125,211,252,.20);
+      outline:2px solid rgba(125,211,252,.35);
+    }
     .icon{width:30px; height:30px; object-fit:contain; transition:.2s}
     .icon:hover{transform:scale(1.12)}
 
     .accent{color:var(--blue)}
-
-    @media (max-width:900px){
-      .stats{grid-template-columns:1fr 1fr}
-      .cards{grid-template-columns:1fr}
-      .pricing{grid-template-columns:1fr}
-    }
   </style>
 </head>
 <body>
@@ -185,7 +193,7 @@
     <div class="examples-row">
       <div class="phone-frame">
         <iframe
-          src="https://www.youtube.com/embed/y__oMrr1F9M"
+          src="https://www.youtube.com/embed/y__oMrr1F9M?modestbranding=1&rel=0&playsinline=1"
           title="Example Short — Roblox"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -214,8 +222,18 @@
         <a href="https://www.youtube.com/@Hxvac" target="_blank" rel="noopener" aria-label="Open YouTube">
           <img src="./images/youtube.png" alt="YouTube" class="icon" />
         </a>
+        <!-- Optional: quick copy for your Discord tag -->
+        <button id="copyDisc" class="btn" style="padding:8px 10px; font-weight:700">Copy .hxvac</button>
       </div>
     </div>
   </footer>
+
+  <script>
+    // Copy .hxvac to clipboard
+    document.getElementById('copyDisc')?.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText('.hxvac'); alert('Copied: .hxvac'); }
+      catch(e){ alert('Could not copy, sorry!'); }
+    });
+  </script>
 </body>
 </html>
