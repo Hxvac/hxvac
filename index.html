@@ -75,14 +75,38 @@
     .price{font-size:1.8rem; font-weight:800}
     .alt{color:var(--muted)}
 
-    /* Examples: vertical phone-style */
-    .examples-row{display:flex; justify-content:center}
+    /* Examples: vertical phone-style gallery */
+    .examples-row{
+      display:flex; justify-content:center; gap:16px; flex-wrap:wrap;
+    }
     .phone-frame{
       width:100%; max-width:420px; aspect-ratio:9/16;
       border-radius:20px; border:1px solid #0f1b2e; background:#0a0d13; overflow:hidden;
       box-shadow:0 14px 40px rgba(56,189,248,.10)
     }
     .phone-frame iframe{width:100%; height:100%}
+
+    /* Progress bar */
+    .progress-card{
+      background:linear-gradient(180deg,#0f1420,#0c1119);
+      border:1px solid #0f1b2e; border-radius:18px; padding:18px;
+      box-shadow:0 10px 28px rgba(56,189,248,.10);
+      max-width:720px; margin:0 auto;
+    }
+    .progress-head{
+      display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:10px;
+    }
+    .progress-head b{font-size:1.05rem}
+    .progress-wrap{
+      height:12px; border-radius:999px; overflow:hidden;
+      background:#0a1220; border:1px solid #11253d;
+    }
+    .progress-bar{
+      height:100%;
+      background:linear-gradient(90deg, #38bdf8, #7dd3fc);
+      width:0%; transition:width .5s ease;
+    }
+    .progress-meta{display:flex; justify-content:space-between; color:var(--muted); font-size:.9rem; margin-top:8px}
 
     /* Footer */
     footer{padding:36px 0 56px; color:var(--muted); border-top:1px solid #0f172a}
@@ -107,11 +131,12 @@
 <body>
   <header>
     <div class="container nav">
-      <a class="logo" href="#top">Editing By <span>Hxvac</span></a>
+      <a class="logo" href="#top">Editing By <span class="accent">Hxvac</span></a>
       <nav class="links">
         <a href="#services">Services</a>
         <a href="#pricing">Pricing</a>
         <a href="#examples">Examples</a>
+        <a href="#orders" class="chip">Progress</a>
         <a href="#contact" class="chip">Contact</a>
       </nav>
     </div>
@@ -132,6 +157,27 @@
         <a href="#pricing" class="btn">See Packages</a>
         <a href="#examples" class="btn" style="background:transparent; border:1px solid rgba(125,211,252,.45)">View Examples</a>
       </div>
+    </div>
+  </section>
+
+  <!-- Order Progress -->
+  <section id="orders" class="section container">
+    <h2 class="accent" style="text-align:center">Order Progress</h2>
+    <div class="progress-card">
+      <div class="progress-head">
+        <b>Orders Completed</b>
+        <span><span id="orders-completed">0</span>/<span id="orders-goal">0</span></span>
+      </div>
+      <div class="progress-wrap" aria-label="Orders progress">
+        <div class="progress-bar" id="orders-progress"></div>
+      </div>
+      <div class="progress-meta">
+        <small>This month</small>
+        <small id="orders-percent">0%</small>
+      </div>
+      <p class="alt" style="margin-top:10px">
+        Latest: <b>5-short bundle</b> • <b>7,000 Robux</b>
+      </p>
     </div>
   </section>
 
@@ -186,22 +232,11 @@
     </div>
   </section>
 
-  <!-- Examples (YouTube embed) -->
+  <!-- Examples (YouTube embed gallery) -->
   <section id="examples" class="section container">
     <h2 class="accent">Examples of My Work</h2>
-    <p class="alt">Embedded YouTube Short for smooth playback.</p>
-    <div class="examples-row">
-      <div class="phone-frame">
-        <iframe
-          src="https://www.youtube.com/embed/y__oMrr1F9M?modestbranding=1&rel=0&playsinline=1"
-          title="Example Short — Roblox"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-          style="width:100%;height:100%;border:0;">
-        </iframe>
-      </div>
-    </div>
+    <p class="alt">Embedded YouTube Shorts for smooth playback.</p>
+    <div class="examples-row" id="examples-row"></div>
   </section>
 
   <!-- Contact -->
@@ -229,6 +264,51 @@
   </footer>
 
   <script>
+    // ===== Examples: add or remove YouTube IDs here =====
+    const VIDEOS = [
+      "db3hIGqW1gQ", // Example 3
+      "sHFETDYToEU", // Example 2
+      "y__oMrr1F9M"  // Example 1
+    ];
+
+    (function renderExamples(){
+      const row = document.getElementById('examples-row');
+      const params = "?modestbranding=1&rel=0&playsinline=1";
+      row.innerHTML = VIDEOS.map(id => `
+        <div class="phone-frame">
+          <iframe
+            loading="lazy"
+            src="https://www.youtube.com/embed/${id}${params}"
+            title="Example Short — Roblox"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            style="width:100%;height:100%;border:0;">
+          </iframe>
+        </div>
+      `).join("");
+    })();
+
+    // ===== Progress: edit these numbers any time =====
+    const ORDERS_COMPLETED = 1;  // you've got the 5-short bundle done this month
+    const ORDERS_GOAL = 10;      // monthly goal (change if you want)
+
+    (function renderProgress(){
+      const completedEl = document.getElementById('orders-completed');
+      const goalEl = document.getElementById('orders-goal');
+      const barEl = document.getElementById('orders-progress');
+      const percentEl = document.getElementById('orders-percent');
+
+      const goal = Math.max(1, Number(ORDERS_GOAL) || 1);
+      const done = Math.max(0, Number(ORDERS_COMPLETED) || 0);
+      const pct = Math.max(0, Math.min(100, Math.round((done / goal) * 100)));
+
+      completedEl.textContent = done;
+      goalEl.textContent = goal;
+      barEl.style.width = pct + '%';
+      percentEl.textContent = pct + '%';
+    })();
+
     // Copy .hxvac to clipboard
     document.getElementById('copyDisc')?.addEventListener('click', async () => {
       try { await navigator.clipboard.writeText('.hxvac'); alert('Copied: .hxvac'); }
