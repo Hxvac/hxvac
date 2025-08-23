@@ -13,6 +13,9 @@
   <meta property="og:url" content="https://hxvac.github.io/hxvac/">
   <meta name="theme-color" content="#7dd3fc">
 
+  <!-- Perf: font preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -156,6 +159,7 @@
       <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:6px">
         <a href="#pricing" class="btn">See Packages</a>
         <a href="#examples" class="btn" style="background:transparent; border:1px solid rgba(125,211,252,.45)">View Examples</a>
+        <a href="https://discord.gg/dh2azNrU6q" target="_blank" rel="noopener" class="btn">Join Discord</a>
       </div>
     </div>
   </section>
@@ -244,10 +248,10 @@
     <div class="container">
       <h2 class="accent">Contact</h2>
       <div class="contact">
-        <!-- Discord button (uses discord-icon.png) -->
-        <a href="https://discord.com/users/1097237408191353015" target="_blank" rel="noopener" class="disc" aria-label="Open .hxvac on Discord">
+        <!-- Discord server button -->
+        <a href="https://discord.gg/dh2azNrU6q" target="_blank" rel="noopener" class="disc" aria-label="Join Hxvac Discord Server">
           <img src="./images/discord-icon.png" alt="Discord" class="icon" />
-          <span>.hxvac</span>
+          <span>Join Discord</span>
         </a>
         <!-- TikTok -->
         <a href="https://www.tiktok.com/@brandnisonline" target="_blank" rel="noopener" aria-label="Open TikTok">
@@ -257,8 +261,6 @@
         <a href="https://www.youtube.com/@Hxvac" target="_blank" rel="noopener" aria-label="Open YouTube">
           <img src="./images/youtube.png" alt="YouTube" class="icon" />
         </a>
-        <!-- Optional: quick copy for your Discord tag -->
-        <button id="copyDisc" class="btn" style="padding:8px 10px; font-weight:700">Copy .hxvac</button>
       </div>
     </div>
   </footer>
@@ -290,8 +292,8 @@
     })();
 
     // ===== Progress: edit these numbers any time =====
-    const ORDERS_COMPLETED = 1;  // you've got the 5-short bundle done this month
-    const ORDERS_GOAL = 10;      // monthly goal (change if you want)
+    const ORDERS_COMPLETED = 1;  // finished orders this month
+    const ORDERS_GOAL = 10;      // monthly goal
 
     (function renderProgress(){
       const completedEl = document.getElementById('orders-completed');
@@ -308,12 +310,6 @@
       barEl.style.width = pct + '%';
       percentEl.textContent = pct + '%';
     })();
-
-    // Copy .hxvac to clipboard
-    document.getElementById('copyDisc')?.addEventListener('click', async () => {
-      try { await navigator.clipboard.writeText('.hxvac'); alert('Copied: .hxvac'); }
-      catch(e){ alert('Could not copy, sorry!'); }
-    });
   </script>
 </body>
 </html>
