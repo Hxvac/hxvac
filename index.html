@@ -11,6 +11,7 @@
   <meta property="og:description" content="Casual. Quick. High-Quality Roblox Shorts for TikTok & YouTube.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hxvac.github.io/hxvac/">
+  <meta property="og:image" content="https://hxvac.github.io/hxvac/images/hxvac-banner.png">
   <meta name="theme-color" content="#7dd3fc">
 
   <!-- Perf: font preconnects -->
@@ -59,13 +60,25 @@
 
     /* Hero */
     .hero{text-align:center; padding:80px 0 24px}
-    .hero h1{font-size:clamp(2.1rem, 3.5vw + .8rem, 3.5rem); line-height:1.05; margin:.3rem 0 .6rem}
     .tagline{color:var(--muted)}
     .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:26px auto; max-width:760px}
     .stat{background:linear-gradient(180deg,#0f1420,#0c1119); border:1px solid #0f1a2c; border-radius:16px; padding:12px; transition:.18s}
     .stat:hover{transform:translateY(-3px)}
     .stat b{display:block}
     .stat small{color:var(--muted)}
+
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease-out forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     /* Cards */
     .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
@@ -107,7 +120,7 @@
     .progress-bar{
       height:100%;
       background:linear-gradient(90deg, #38bdf8, #7dd3fc);
-      width:0%; transition:width .5s ease;
+      width:0%; transition:width 1s ease; /* smooth bar animation */
     }
     .progress-meta{display:flex; justify-content:space-between; color:var(--muted); font-size:.9rem; margin-top:8px}
 
@@ -148,8 +161,9 @@
   <!-- Hero -->
   <section class="hero container" id="top">
     <div>
-      <div class="chip">Roblox Shorts • TikTok & YouTube</div>
-      <h1>Editing By <span class="accent">Hxvac</span></h1>
+      <img src="./images/hxvac-banner.png" alt="Edited by Hxvac"
+           class="fade-in"
+           style="max-width:600px; width:100%; border-radius:12px; box-shadow:0 10px 32px rgba(56,189,248,.25)" />
       <p class="tagline">Casual. Quick. High-Quality Edits That Get Views.</p>
       <div class="stats">
         <div class="stat"><b class="accent">10–30s</b><small>Optimized short length</small></div>
