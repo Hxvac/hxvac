@@ -34,16 +34,31 @@
 
     /* Hero */
     .hero {
+      position: relative;
       text-align: center;
       padding: 100px 20px 60px;
-      position: relative;
       overflow: hidden;
     }
-    .hero h1 {
-      font-size: 3rem;
-      color: var(--gold);
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background-image: 
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0 20px, transparent 20px 40px),
+        repeating-linear-gradient(-45deg, rgba(255,255,255,0.05) 0 20px, transparent 20px 40px);
+      animation: moveBackground 15s linear infinite;
+      z-index: 0;
     }
+    @keyframes moveBackground {
+      0% { transform: translate(0,0); }
+      100% { transform: translate(50px,50px); }
+    }
+    .hero * { position: relative; z-index: 1; }
+
+    .hero img { max-width: 500px; width: 100%; margin-bottom: 20px; border-radius: 12px; }
     .tagline { margin-top: 10px; font-size: 1.2rem; color: var(--muted); }
+
     .btn-row {
       margin-top: 30px;
       display: flex;
@@ -54,7 +69,7 @@
     .btn {
       background: var(--gold);
       color: #000;
-      font-weight: bold;
+      font-weight: 800;
       padding: 12px 20px;
       border-radius: 10px;
       font-size: 1rem;
@@ -62,9 +77,7 @@
       overflow: hidden;
       transition: transform .2s;
     }
-    .btn:hover {
-      transform: scale(1.05);
-    }
+    .btn:hover { transform: scale(1.05); }
     .btn::after {
       content: "";
       position: absolute;
@@ -74,9 +87,7 @@
       transform: skewX(-20deg);
       transition: left .5s;
     }
-    .btn:hover::after {
-      left: 125%;
-    }
+    .btn:hover::after { left: 125%; }
 
     /* Sections */
     .section { padding: 80px 20px; max-width: 1100px; margin: auto; }
@@ -157,7 +168,7 @@
       margin: auto;
     }
     .progress-bar {
-      height: 12px;
+      height: 16px;
       border-radius: 999px;
       overflow: hidden;
       background: #333;
@@ -172,7 +183,7 @@
     /* Footer */
     footer {
       background: var(--panel);
-      border-top: 2px solid var(--gold-strong);
+      border-top: 1px solid var(--gold-strong);
       text-align: center;
       padding: 30px 20px;
       margin-top: 50px;
@@ -187,7 +198,7 @@
 
   <!-- Hero -->
   <section class="hero">
-    <h1>Edited by Hxvac</h1>
+    <img src="./images/hxvac-banner.png" alt="Edited by Hxvac Logo">
     <p class="tagline">Speed, Quality, Professionalism<br>75M+ Contributed Views!</p>
     <div class="btn-row">
       <a href="#pricing" class="btn">Pricing</a>
@@ -201,9 +212,9 @@
   <section id="services" class="section">
     <h2>Services</h2>
     <div class="services">
-      <div class="service-card"><h3>Shorts Editing</h3><p>Tight cuts, beat sync, motion for energy.</p></div>
-      <div class="service-card"><h3>Captions & Effects</h3><p>Readable, stylish captions with subtle effects.</p></div>
-      <div class="service-card"><h3>Packaging</h3><p>Hooks, titles, and thumbnail guidance.</p></div>
+      <div class="service-card"><h3>✂️ Shorts Editing</h3><p>Tight cuts, beat sync, motion for energy.</p></div>
+      <div class="service-card"><h3>💬 Captions & Effects</h3><p>Readable, stylish captions with subtle effects.</p></div>
+      <div class="service-card"><h3>🎨 Packaging</h3><p>Hooks, titles, and thumbnail guidance.</p></div>
     </div>
   </section>
 
@@ -251,7 +262,7 @@
   <section id="progress" class="section">
     <h2>Order Progress</h2>
     <div class="progress-card">
-      <p><b>3 / 10 Orders Completed</b></p>
+      <p><b>3 / 10 Orders Completed (30%)</b></p>
       <div class="progress-bar"><div class="progress-fill"></div></div>
     </div>
   </section>
@@ -270,7 +281,6 @@
   <script>
     // ===== Examples autoplay Shorts =====
     const VIDEOS = [
-      "Cwm9FAAlB7A", // Before & After
       "db3hIGqW1gQ",
       "sHFETDYToEU",
       "y__oMrr1F9M"
